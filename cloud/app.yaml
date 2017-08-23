@@ -1,0 +1,34 @@
+application: da
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+instance_class: F1
+automatic_scaling:
+  min_idle_instances: 0
+  max_idle_instances: 1
+
+handlers:
+- url: /excel_reader/static/
+  static_dir: ExcelReader/static
+
+- url: /excel_reader/.*|^/excel_reader$
+  script: ExcelReader.app
+  application_readable: true
+
+- url: /admin/.*
+  script: google.appengine.ext.admin.application
+  login: admin
+
+- url: /static
+  static_dir: static
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: latest
+
+- name: lxml
+  version: latest
