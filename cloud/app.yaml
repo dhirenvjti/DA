@@ -14,7 +14,6 @@ handlers:
 
 - url: /excel_reader/.*|^/excel_reader$
   script: ExcelReader.app
-  application_readable: true
 
 - url: /admin/.*
   script: google.appengine.ext.admin.application
